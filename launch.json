@@ -1,0 +1,42 @@
+{
+  "kind": "evm_contracts",
+  "contracts": [
+    {
+      "contract": "MockOG",
+      "constructorArgs": ["$owner"]
+    },
+    {
+      "contract": "MockSwarmPepe",
+      "constructorArgs": []
+    },
+    {
+      "contract": "MockDelegateRegistry",
+      "constructorArgs": []
+    },
+    {
+      "contract": "OGClubHouses",
+      "constructorArgs": [
+        "$contract:MockOG",
+        "$owner",
+        "$owner",
+        "100000000000000000000000",
+        "0"
+      ]
+    },
+    {
+      "contract": "OGClubDeeds",
+      "constructorArgs": [
+        "$contract:MockOG",
+        "$owner",
+        "$owner",
+        "250000000000000000000000",
+        "0",
+        "$contract:MockSwarmPepe",
+        "$contract:MockDelegateRegistry",
+        "$owner"
+      ]
+    }
+  ],
+  "notes": "Sepolia (11155111) test configuration only. $owner is the launch's supplied test deployment wallet, vault, administrator and royalty receiver, never the factory. MockOG is notoken (nt), 18 decimals, initially 1 whole token to $owner; its unrestricted public faucet can increase supply. Prices are in token wei, with zero notice. The five contracts are ordinary deployments with backward references. For separate test deployer and owner addresses use script/Deploy.s.sol with explicit arguments. This manifest is not a mainnet configuration; mainnet requires existing OG and Swarm Pepe, the v2 registry, the real farming vault, a Safe owner and a 604800-second notice. No deployment is performed by this assignment."
+}
+
